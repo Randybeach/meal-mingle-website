@@ -1,0 +1,15 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "A885JFKV9F.com.example.recip",
+        "paths": [
+          "/invite/*",
+          "/recipe/*",
+          "/cookbook/*"
+        ]
+      }
+    ]
+  }
+}
