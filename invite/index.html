@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Household - Meal Mingle</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        .logo {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: #2c3e50;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #7f8c8d;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        .btn {
+            background: #e74c3c;
+            color: white;
+            padding: 16px 32px;
+            text-decoration: none;
+            border-radius: 10px;
+            display: inline-block;
+            font-weight: 600;
+            font-size: 18px;
+            transition: transform 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+        .app-store-links {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid #ecf0f1;
+        }
+        .app-store-links p {
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        .stores {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .store-badge {
+            height: 40px;
+        }
+    </style>
+    <script>
+        const APP_STORE_URL = 'https://apps.apple.com/app/meal-mingle';
+        const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.example.recip';
+        
+        function isIOS() {
+            return /iPad|iPhone|iPod/.test(navigator.userAgent);
+        }
+        
+        function isAndroid() {
+            return /Android/.test(navigator.userAgent);
+        }
+        
+        function getInviteId() {
+            const path = window.location.pathname;
+            const parts = path.split('/').filter(p => p);
+            return parts.length > 1 ? parts[1] : null;
+        }
+        
+        function openApp() {
+            const inviteId = getInviteId();
+            
+            if (!inviteId) {
+                if (isIOS()) {
+                    window.location.href = APP_STORE_URL;
+                } else if (isAndroid()) {
+                    window.location.href = PLAY_STORE_URL;
+                }
+                return;
+            }
+            
+            const deepLink = 'mealmingle://invite/' + inviteId;
+            const startTime = Date.now();
+            
+            window.location.href = deepLink;
+            
+            setTimeout(function() {
+                const elapsed = Date.now() - startTime;
+                if (elapsed >= 2400) {
+                    if (isIOS()) {
+                        window.location.href = APP_STORE_URL;
+                    } else if (isAndroid()) {
+                        window.location.href = PLAY_STORE_URL;
+                    }
+                }
+            }, 2500);
+        }
+        
+        window.onload = function() {
+            const inviteId = getInviteId();
+            
+            if (inviteId) {
+                openApp();
+                setTimeout(function() {
+                    document.body.style.display = 'flex';
+                }, 2000);
+            } else {
+                document.body.style.display = 'flex';
+            }
+        };
+    </script>
+</head>
+<body style="display: none;">
+    <div class="card">
+        <div class="logo">🏠</div>
+        <h1>You're Invited!</h1>
+        <p>You've been invited to join a household on Meal Mingle. Share recipes, meal plans, and grocery lists with your family!</p>
+        
+        <button onclick="openApp()" class="btn">
+            Open in Meal Mingle
+        </button>
+        
+        <div class="app-store-links">
+            <p>Don't have the app yet?</p>
+            <div class="stores">
+                <a href="https://apps.apple.com/app/meal-mingle" target="_blank">
+                    <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83" alt="Download on App Store" class="store-badge">
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
