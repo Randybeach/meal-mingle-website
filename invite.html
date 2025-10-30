@@ -73,17 +73,49 @@
         }
     </style>
     <script>
-        // Attempt to open the app with deep link
+        const APP_STORE_URL = 'https://apps.apple.com/app/meal-mingle';
+        const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.example.recip';
+        
+        function isIOS() {
+            return /iPad|iPhone|iPod/.test(navigator.userAgent);
+        }
+        
+        function isAndroid() {
+            return /Android/.test(navigator.userAgent);
+        }
+        
+        function openApp() {
+            const path = window.location.pathname;
+            const inviteId = path.split('/').pop();
+            
+            if (!inviteId || inviteId === 'invite.html') return;
+            
+            const deepLink = 'mealmingle://invite/' + inviteId;
+            const startTime = Date.now();
+            
+            // Try to open the app
+            window.location.href = deepLink;
+            
+            // If app doesn't open within 2.5 seconds, redirect to store
+            setTimeout(function() {
+                const elapsed = Date.now() - startTime;
+                // If page is still visible after 2.5s, app didn't open
+                if (elapsed >= 2400) {
+                    if (isIOS()) {
+                        window.location.href = APP_STORE_URL;
+                    } else if (isAndroid()) {
+                        window.location.href = PLAY_STORE_URL;
+                    }
+                }
+            }, 2500);
+        }
+        
         window.onload = function() {
             const path = window.location.pathname;
             const inviteId = path.split('/').pop();
             
             if (inviteId && inviteId !== 'invite.html') {
-                // Try to open the app
-                const deepLink = 'mealmingle://invite/' + inviteId;
-                window.location.href = deepLink;
-                
-                // If app doesn't open after 2 seconds, show the page
+                openApp();
                 setTimeout(function() {
                     document.body.style.display = 'flex';
                 }, 2000);
@@ -99,7 +131,7 @@
         <h1>You're Invited!</h1>
         <p>You've been invited to join a household on Meal Mingle. Share recipes, meal plans, and grocery lists with your family!</p>
         
-        <a href="#" onclick="window.location.href='mealmingle://invite/' + window.location.pathname.split('/').pop(); return false;" class="btn">
+        <a href="#" onclick="openApp(); return false;" class="btn">
             Open in Meal Mingle
         </a>
         
