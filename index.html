@@ -1,109 +1,426 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meal Mingle - AI Recipe Parser API</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        header { background: #2c3e50; color: white; padding: 1rem 0; }
-        nav { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.5rem; font-weight: bold; }
-        .nav-links { display: flex; list-style: none; gap: 2rem; }
-        .nav-links a { color: white; text-decoration: none; }
-        .hero { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 4rem 0; text-align: center; }
-        .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
-        .hero p { font-size: 1.2rem; margin-bottom: 2rem; }
-        .btn { background: #e74c3c; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; display: inline-block; }
-        .features { padding: 4rem 0; }
-        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem; }
-        .feature { background: #f8f9fa; padding: 2rem; border-radius: 8px; text-align: center; }
-        .feature h3 { color: #2c3e50; margin-bottom: 1rem; }
-        .api-demo { background: #ecf0f1; padding: 4rem 0; }
-        .code-block { background: #2c3e50; color: #ecf0f1; padding: 1.5rem; border-radius: 8px; overflow-x: auto; margin: 1rem 0; }
-        footer { background: #2c3e50; color: white; text-align: center; padding: 2rem 0; }
-    </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Meal Mingle — Save recipes from anywhere</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <nav class="container">
-            <div class="logo">🍽️ Meal Mingle</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <section id="home" class="hero">
-        <div class="container">
-            <h1>Meal Mingle</h1>
-            <p>Smart recipe management with social features and intelligent recipe importing</p>
-            <a href="#features" class="btn">Discover Features</a>
-        </div>
-    </section>
+<header>
+  <nav class="container">
+    <div class="logo" style="width:50%"><span class="dot"></span> Meal Mingle</div>
+    <div class="nav">
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a class="btn outline" href="#download">Get App</a>
+    </div>
+  </nav>
+</header>
 
-    <section id="features" class="features">
-        <div class="container">
-            <h2 style="text-align: center; margin-bottom: 2rem;">App Features</h2>
-            <div class="features-grid">
-                <div class="feature">
-                    <h3>📱 Smart Recipe Import</h3>
-                    <p>Import recipes from Instagram, TikTok, Facebook, and any recipe website with AI</p>
-                </div>
-                <div class="feature">
-                    <h3>👥 Social Cookbooks</h3>
-                    <p>Create shared cookbooks and collaborate with friends and family</p>
-                </div>
-                <div class="feature">
-                    <h3>📅 Meal Planning</h3>
-                    <p>Plan your meals with an integrated calendar and grocery list features</p>
-                </div>
-                <div class="feature">
-                    <h3>🔧 Recipe Tools</h3>
-                    <p>Scale ingredients, convert measurements, and use cook mode for step-by-step guidance</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <span class="tag primary">Save Recipes From Anywhere</span>
+      <h1>Everything you need to cook <br/>smarter, not harder.</h1>
+      <p class="lead">Meal Mingle brings AI, organization, and simplicity to your kitchen. Import from anywhere, plan effortlessly, and keep your recipes perfectly organized across all your devices.</p>
+      <div class="store-row" id="download">
+        <div class="store-badge"><img src="assets/images/apple-store.svg" alt="Download on App Store" class="store-img"></div>
+      </div>
 
-    <section id="about" class="api-demo">
-        <div class="container">
-            <h2 style="text-align: center; margin-bottom: 2rem;">About Meal Mingle</h2>
-            <p style="text-align: center; margin-bottom: 2rem; font-size: 1.1rem;">The smart way to organize, share, and discover recipes</p>
-            
-            <div style="background: white; padding: 2rem; border-radius: 8px; margin: 2rem 0;">
-                <h3 style="color: #2c3e50; margin-bottom: 1rem;">🚀 Key Capabilities</h3>
-                <ul style="list-style: none; padding: 0;">
-                    <li style="margin: 0.5rem 0;">✅ Import from social media (Instagram, TikTok, Facebook)</li>
-                    <li style="margin: 0.5rem 0;">✅ Parse any recipe website automatically</li>
-                    <li style="margin: 0.5rem 0;">✅ Convert text recipes to structured format</li>
-                    <li style="margin: 0.5rem 0;">✅ Collaborative cookbook sharing</li>
-                    <li style="margin: 0.5rem 0;">✅ Meal planning and organization</li>
-                    <li style="margin: 0.5rem 0;">✅ Cross-platform mobile app</li>
-                </ul>
-            </div>
-        </div>
-    </section>
+    </div>
 
-    <section id="contact" style="padding: 4rem 0;">
-        <div class="container" style="text-align: center;">
-            <h2>Contact Us</h2>
-            <p style="margin: 1rem 0;">Questions about Meal Mingle or need support?</p>
-            <p><strong>Email:</strong> support@meal-mingle.app</p>
-            <p><strong>App Support:</strong> Available via email</p>
-            <p><strong>Founded:</strong> 2024</p>
-        </div>
-    </section>
+    <div class="hero-phones">
+      <div class="phone"><img src="https://images.unsplash.com/photo-1543352634-8730b1eb3e17?q=80&w=1000" alt="app screen 1"></div>
+      <div class="phone"><img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?q=80&w=1000" alt="app screen 2"></div>
+    </div>
+  </div>
+</section>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 Meal Mingle. All rights reserved. | Smart Recipe Management App</p>
+<!-- Save from Social -->
+<section id="features" class="section">
+  <div class="container split">
+    <div class="card-media">
+      <img class="img-mock" src="https://images.unsplash.com/photo-1514517220032-65f9ffcd2b59?q=80&w=1600" alt="Import from social">
+    </div>
+    <div>
+      <span class="tag">Import Recipes From Anywhere</span>
+      <h2>Bring your favorite dishes together effortlessly.</h2>
+      <p class="lead">Import from websites, blogs, social media, text, photos or add them manually. Meal Mingle's AI cleans and organizes everything for you.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Find perfect recipe fast -->
+<section class="section">
+  <div class="container split">
+    <div>
+      <span class="tag">Smart Recipe & Ingredient Search</span>
+      <h2>Find exactly what you need in seconds.</h2>
+      <p class="lead">Search by name, ingredient, or label and let AI surface the perfect match from your collection. Keep your recipe library structured your way with custom tags like "Weeknight Dinners," "Vegan," or "5 Ingredients", and filter them instantly.</p>
+    </div>
+    <div class="card-media">
+      <img class="img-mock" src="https://images.unsplash.com/photo-1490818387583-1baba5e638af?q=80&w=1600" alt="Search">
+    </div>
+  </div>
+</section>
+
+<!-- Meal Planner -->
+<section class="section">
+  <div class="container split">
+    <div class="card-media">
+      <img class="img-mock" src="https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?q=80&w=1600" alt="Meal Planner">
+    </div>
+    <div>
+      <span class="tag">Meal Planner</span>
+      <h2>Plan your week's meals with drag-and-drop simplicity.</h2>
+      <p class="lead">Sync recipes to specific days and let Meal Mingle handle the details.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Smart Grocery Lists -->
+<section class="section">
+  <div class="container split">
+    <div>
+      <span class="tag">Smart Grocery Lists</span>
+      <h2>Generate grocery lists automatically from your meal plan.</h2>
+      <p class="lead">Grouped by category, synced across devices, and ready for your next shopping trip.</p>
+    </div>
+    <div class="card-media">
+      <img class="img-mock" src="https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?q=80&w=1600" alt="Groceries">
+    </div>
+  </div>
+</section>
+
+<!-- Household Sync -->
+<section class="section">
+  <div class="container split">
+    <div class="card-media">
+      <img class="img-mock" src="https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?q=80&w=1600" alt="Household Sync">
+    </div>
+    <div>
+      <span class="tag">Household Sync</span>
+      <h2>Keep everyone on the same page.</h2>
+      <p class="lead">Share recipes, meal plans, and grocery lists with your household, updated happens in real time.</p>
+    </div>
+  </div>
+</section>
+
+<!-- For your kitchen, there's a smarter way -->
+<section class="section pt-40">
+  <div class="container" >
+    <h2 class="text-center">For your kitchen, there's<br/>a smarter way</h2>
+    <div class="mini-feats mt-22">
+      <div class="mini">
+
+        <b>Import from any website</b>
+        <div class="mini-subtitle">One click, instant recipe.</div>
+        <span class="muted">Share a link from your favorite site. Meal Mingle cleans, formats, and saves it automatically.</span>
+      </div>
+      <div class="mini">
+
+        <b>Collections</b>
+        <div class="mini-subtitle">Organize like playlists.</div>
+        <span class="muted">Group recipes by mood, meal, or occasion, from "Sunday brunch" to "5-minute dinners."</span>
+      </div>
+      <div class="mini">
+
+        <b>Cloud sync</b>
+        <div class="mini-subtitle">Your kitchen, everywhere.</div>
+        <span class="muted">Access your recipes across all devices. Start on your phone, finish on your tablet.</span>
+      </div>
+      <div class="mini">
+
+        <b>Ad-free</b>
+        <div class="mini-subtitle">Focus on the food, not the noise.</div>
+        <span class="muted">Enjoy a calm, distraction-free cooking experience with just you and your next dish.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section id="pricing" class="section" style="padding-top:28px">
+  <div class="container">
+    <h2 style="text-align:center">Plans & Pricing</h2>
+    <div class="pricing-toggle">
+      <div class="pricing-toggle-container">
+        <button class="toggle-btn active" data-period="monthly">Monthly</button>
+        <button class="toggle-btn" data-period="annually">Annually</button>
+      </div>
+    </div>
+    <div class="pricing">
+      <div class="plan" data-plan="free">
+        <div class="plan-indicator"></div>
+        <span class="tag tag-full">Free</span>
+        <div class="price">€0</div>
+        <p class="muted">Get started with core features.</p>
+        <div class="plan-features">
+          <div class="feature">Import from social & web (monthly limit)</div>
+          <div class="feature">Basic OCR</div>
+          <div class="feature">Smart Recipe & Ingredient Search</div>
+          <div class="feature">Collections & label</div>
+          <div class="feature">Meal planner & Grocery list (basic)</div>
+          <div class="feature">Cloud sync</div>
         </div>
-    </footer>
+        <div class="plan-button-free"><a class="btn outline btn-full" href="#">Get started</a></div>
+      </div>
+
+      <div class="plan selected" data-plan="pro">
+        <div class="plan-indicator"></div>
+        <span class="tag tag-full">Pro</span>
+        <div class="price">€2.99<span style="font-size:1rem;font-weight:600"> /mo</span></div>
+        <p class="muted">Everything in Free, plus power tools.</p>
+        <div class="plan-features">
+          <div class="feature"><b>Ad-free experience</b></div>
+          <div class="feature"><b>Unlimited imports</b></div>
+          <div class="feature"><b>Household collaboration</b></div>
+          <div class="feature"><b>Advanced Cook Mode</b></div>
+          <div class="feature"><b>Advanced OCR + editing</b></div>
+          <div class="feature"><b>Planner & groceries (advanced)</b></div>
+          <div class="feature"><b>Priority sync & support</b></div>
+        </div>
+        <div class="plan-button"><a class="btn btn-full" href="#">Try 7 days FREE</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="section faq-section">
+  <div class="container">
+    <h2 class="text-center">Frequently Asked Questions</h2>
+    <div class="faq-grid">
+      <div class="faq-col">
+
+    <!-- 🥣 Getting Started -->
+    <details>
+      <summary>Can I save recipes from Instagram or TikTok?</summary>
+      <div class="muted faq-answer">
+        Yes! Tap <b>Share → Meal Mingle</b> directly from Instagram, TikTok, YouTube, or other apps.
+        We’ll automatically extract ingredients, steps, and credits.
+      </div>
+    </details>
+
+    <details>
+      <summary>What are smart imports?</summary>
+      <div class="muted faq-answer">
+        Smart imports automatically extract ingredients and steps from links or text.
+        <b>Free:</b> 5 per month. <b>Premium:</b> unlimited.
+      </div>
+    </details>
+
+    <details>
+      <summary>What is a cookbook?</summary>
+      <div class="muted faq-answer">
+        Cookbooks are collections that help you stay organized.
+        Create personal sets (e.g. “Weeknight Wins”) or shared ones with family and friends so everyone can add recipes together.
+      </div>
+    </details>
+
+    <!-- ⚙️ Features -->
+    <details>
+      <summary>How does Cook Mode work?</summary>
+      <div class="muted faq-answer">
+        Tap <b>Cook Mode</b> on any recipe to view step-by-step instructions with timers and ingredient quantities —
+        all in a hands-free layout. Premium unlocks the full experience.
+      </div>
+    </details>
+
+    <details>
+      <summary>Can I scale ingredients?</summary>
+      <div class="muted faq-answer">
+        Yes! Adjust the <b>servings</b> in any recipe, and all ingredient quantities update automatically.
+      </div>
+    </details>
+
+    <details>
+      <summary>Can I search by ingredient?</summary>
+      <div class="muted faq-answer">
+        Absolutely. Search by recipe name, ingredient, diet, time, or your custom labels.
+      </div>
+    </details>
+      </div>
+      <div class="faq-col">
+
+    <details>
+      <summary>Does the app work offline?</summary>
+      <div class="muted faq-answer">
+        Saved recipes are cached for offline viewing. They’ll sync again once you’re back online.
+      </div>
+    </details>
+
+    <!-- 💳 Subscription -->
+    <details>
+      <summary>How do I manage or cancel my subscription?</summary>
+      <div class="muted faq-answer">
+        Go to <b>Settings → Subscription → Manage</b> in the app. You’ll be redirected to the App Store or Google Play to cancel or update your plan.
+      </div>
+    </details>
+
+    <details>
+      <summary>Can I get a refund?</summary>
+      <div class="muted faq-answer">
+        Refunds are handled directly by your App Store or Google Play account.
+      </div>
+    </details>
+
+    <!-- 👤 Account -->
+    <details>
+      <summary>How do I delete my account?</summary>
+      <div class="muted faq-answer">
+        Email <b>support@mealmingle.com</b> with the subject “Account Deletion.”
+        This will permanently remove your data and cannot be undone.
+      </div>
+    </details>
+
+    <details>
+      <summary>Does Meal Mingle sync across devices?</summary>
+      <div class="muted faq-answer">
+        Yes! Your recipes, cookbooks, and grocery lists stay synced automatically when you’re signed in with the same account.
+      </div>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+
+      <!-- Brand / Tagline / Social -->
+      <div class="footer-brand">
+        <div class="logo"><span class="dot"></span> Meal Mingle</div>
+        <p class="footer-tagline">Save recipes from anywhere. Plan meals. Shop smarter.</p>
+
+        <div class="footer-badge-row">
+          <a class="store-badge" href="#" aria-label="Download on the App Store">
+            <img src="assets/images/apple-store.svg" alt="Download on the App Store">
+          </a>
+        </div>
+      </div>
+
+      <!-- Links -->
+      <div>
+        <span class="foot-head">Links</span>
+        <div class="footer-links">
+          <a href="#features">Features</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#faq">FAQ</a>
+        </div>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <span class="foot-head">Contact Us</span>
+        <div class="footer-contact footer-links">
+          <a class="footer-links"href="mailto:support@meal-mingle.com">support@meal-mingle.com</a>
+        </div>
+      </div>
+
+      <!-- Legal -->
+      <div>
+        <span class="foot-head">Legal</span>
+        <div class="footer-links">
+            <a href="terms.html">Terms of use</a>
+          <a href="privacy.html">Privacy policy</a>
+          <a href="cookies.html">Cookie policy</a>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="footer-copyright">© 2025 Meal Mingle</p>
+  </div>
+</footer>
+
+
+
+<script>
+  // FAQ: open only one at a time
+  document.querySelectorAll('details').forEach(d=>{
+    d.addEventListener('toggle', e=>{
+      if(d.open){
+        document.querySelectorAll('details').forEach(o=>{ if(o!==d) o.removeAttribute('open'); });
+      }
+    });
+  });
+
+  // Pricing: toggle plan selection
+  document.querySelectorAll('.plan').forEach(plan => {
+    plan.addEventListener('click', () => {
+      // Remove selected class from all plans
+      document.querySelectorAll('.plan').forEach(p => p.classList.remove('selected'));
+
+      // Add selected class to clicked plan
+      plan.classList.add('selected');
+
+      // Optional: Log selected plan
+      const planType = plan.dataset.plan;
+      console.log(`Selected plan: ${planType}`);
+    });
+  });
+
+  // Pricing: monthly/annually toggle
+  document.querySelectorAll('.toggle-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Remove active class from all toggle buttons
+      document.querySelectorAll('.toggle-btn').forEach(b => {
+        b.classList.remove('active');
+        b.style.background = 'transparent';
+        b.style.color = 'var(--muted)';
+      });
+      
+      // Add active class to clicked button
+      btn.classList.add('active');
+      btn.style.background = 'var(--brand)';
+      btn.style.color = 'white';
+      
+      // Update pricing (you can customize this logic)
+      const period = btn.dataset.period;
+      const proPrice = document.querySelector('.plan[data-plan="pro"] .price');
+      if (period === 'annually') {
+        proPrice.innerHTML = '€29.99<span style="font-size:1rem;font-weight:600"> /year</span><div class="save-badge">Save 17%</div>';
+      } else {
+        proPrice.innerHTML = '€2.99<span style="font-size:1rem;font-weight:600"> /mo</span>';
+      }
+    });
+  });
+</script>
+
+<!-- Cookie Consent Banner -->
+<div id="cookie-banner" class="cookie-banner hidden">
+  <div class="cookie-inner">
+    <p>We use cookies to improve your browsing experience and analyze traffic. 
+      See our <a href="cookies.html">Cookie Policy</a>.
+    </p>
+    <button id="accept-cookies" class="btn small">Accept</button>
+  </div>
+</div>
+
+<script>
+  // Cookie consent logic
+  const banner = document.getElementById('cookie-banner');
+  const acceptBtn = document.getElementById('accept-cookies');
+
+  // Show banner if not yet accepted
+  if (!localStorage.getItem('cookiesAccepted')) {
+    banner.classList.remove('hidden');
+  }
+
+  acceptBtn.addEventListener('click', () => {
+    localStorage.setItem('cookiesAccepted', 'true');
+    banner.classList.add('hidden');
+  });
+</script>
+
 </body>
 </html>

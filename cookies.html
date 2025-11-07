@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cookie Policy – Meal Mingle</title>
+
+  <!-- Fonts & main styles -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Page-specific helpers -->
+  <style>
+    .legal-wrap{max-width:860px;margin:0 auto;}
+    .legal-wrap h1{
+      font-family:'Playfair Display',serif;
+      font-size:clamp(1.8rem,3vw,2.5rem);
+      line-height:1.1;
+      margin:.2rem 0 .4rem;
+    }
+    .legal-wrap h2{
+      font-family:'Playfair Display',serif;
+      font-size:22px;
+      margin:28px 0 8px;
+      letter-spacing:-.01em;
+    }
+    .legal-wrap p{margin:8px 0;color:var(--ink);}
+    .legal-meta{color:var(--muted);margin-bottom:18px;}
+    .legal-wrap a{color:var(--ink);text-decoration:underline;}
+    .legal-callout{
+      background:linear-gradient(135deg,#FFFFFF 0%,#FAFAFA 100%);
+      border:.5px solid var(--ring);
+      border-radius:var(--radius);
+      padding:16px;
+      margin:18px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <nav class="container">
+      <div class="logo" style="width:50%"><a href="index.html"><span class="dot"></span> Meal Mingle</a></div>
+      <div class="nav">
+        <a href="index.html#features">Features</a>
+        <a href="index.html#pricing">Pricing</a>
+        <a href="index.html#faq">FAQ</a>
+        <a class="btn outline" href="index.html#download">Get App</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Content -->
+  <section class="section">
+    <div class="container legal-wrap">
+      <h1>Cookie Policy</h1>
+      <p class="legal-meta">Last updated: January 2025</p>
+
+      <div class="legal-callout">
+        Meal Mingle uses a minimal number of cookies to make our website function properly and to improve your experience.
+      </div>
+
+      <h2>What Are Cookies</h2>
+      <p>Cookies are small text files that a website places on your device to remember certain information about your visit. They help sites recognize your browser and store small amounts of data such as preferences or session details.</p>
+
+      <h2>How We Use Cookies</h2>
+      <p>We use cookies to provide essential functionality, remember user preferences, and understand how visitors use our website to improve usability and performance.</p>
+
+      <h2>Types of Cookies We Use</h2>
+      <p><b>Essential Cookies:</b> Enable basic features such as page navigation and secure access.<br/>
+      <b>Analytics Cookies:</b> Help us measure and analyze traffic so we can make improvements.<br/>
+      <b>Preference Cookies:</b> Store your language, region, or display preferences for a consistent experience.</p>
+
+      <h2>Third-Party Cookies</h2>
+      <p>We may use trusted third-party analytics services (such as Google Analytics) that place their own cookies to gather aggregated data on website usage and performance.</p>
+
+      <h2>Managing Cookies</h2>
+      <p>You can control or delete cookies at any time in your browser settings. Most browsers allow you to block cookies entirely or receive a prompt before one is stored. However, disabling essential cookies may affect some parts of our site.</p>
+
+      <h2>Updates to This Policy</h2>
+      <p>We may update this Cookie Policy from time to time. Any changes will be posted on this page with the updated date above.</p>
+
+      <h2>Contact</h2>
+      <p>Questions about cookies or data usage? Email us at <a href="mailto:support@meal-mingle.com">support@meal-mingle.com</a>.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+
+        <!-- Brand -->
+        <div class="footer-brand">
+          <div class="logo"><a href="index.html"><span class="dot"></span> Meal Mingle</a></div>
+          <p class="footer-tagline">Save recipes from anywhere. Plan meals. Shop smarter.</p>
+          <div class="footer-badge-row">
+            <a class="store-badge" href="#" aria-label="Download on the App Store">
+              <img src="assets/images/apple-store.svg" alt="Download on App Store">
+            </a>
+          </div>
+        </div>
+
+        <!-- Links -->
+        <div>
+          <span class="foot-head">Links</span>
+          <div class="footer-links">
+            <a href="index.html#features">Features</a>
+            <a href="index.html#pricing">Pricing</a>
+            <a href="index.html#faq">FAQ</a>
+          </div>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <span class="foot-head">Contact Us</span>
+          <div class="footer-contact">
+            <a href="mailto:support@meal-mingle.com">support@meal-mingle.com</a>
+          </div>
+        </div>
+
+        <!-- Legal -->
+        <div>
+          <span class="foot-head">Legal</span>
+          <div class="footer-links">
+            <a href="terms.html">Terms of use</a>
+            <a href="privacy.html">Privacy policy</a>
+            <a href="security.html">Security</a>
+            <a href="cookies.html">Cookie policy</a>
+          </div>
+        </div>
+
+      </div>
+
+      <p class="footer-copyright">© 2025 Meal Mingle</p>
+    </div>
+  </footer>
+
+<!-- Cookie Consent Banner -->
+<div id="cookie-banner" class="cookie-banner hidden">
+  <div class="cookie-inner">
+    <p>We use cookies to improve your browsing experience and analyze traffic. 
+      See our <a href="cookies.html">Cookie Policy</a>.
+    </p>
+    <button id="accept-cookies" class="btn small">Accept</button>
+  </div>
+</div>
+
+<script>
+  // Cookie consent logic
+  const banner = document.getElementById('cookie-banner');
+  const acceptBtn = document.getElementById('accept-cookies');
+
+  // Show banner if not yet accepted
+  if (!localStorage.getItem('cookiesAccepted')) {
+    banner.classList.remove('hidden');
+  }
+
+  acceptBtn.addEventListener('click', () => {
+    localStorage.setItem('cookiesAccepted', 'true');
+    banner.classList.add('hidden');
+  });
+</script>
+
+</body>
+</html>
