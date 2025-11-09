@@ -28,7 +28,7 @@
     <div>
       <span class="tag primary">Save Recipes From Anywhere</span>
       <h1>Everything you need to cook <br/>smarter, not harder.</h1>
-      <p class="lead">Meal Mingle brings AI, organization, and simplicity to your kitchen. Import from anywhere, plan effortlessly, and keep your recipes perfectly organized across all your devices.</p>
+      <p class="lead">Meal Mingle brings organization, and simplicity to your kitchen. Import from anywhere, plan effortlessly, and keep your recipes perfectly organized across all your devices.</p>
       <div class="store-row" id="download">
         <div class="store-badge"><img src="assets/images/apple-store.svg" alt="Download on App Store" class="store-img"></div>
       </div>
@@ -51,7 +51,7 @@
     <div>
       <span class="tag">Import Recipes From Anywhere</span>
       <h2>Bring your favorite dishes together effortlessly.</h2>
-      <p class="lead">Import from websites, blogs, social media, text, photos or add them manually. Meal Mingle's AI cleans and organizes everything for you.</p>
+      <p class="lead">Import from websites, blogs, social media, text, photos or add them manually. Meal Mingle's cleans and organizes everything for you.</p>
     </div>
   </div>
 </section>
@@ -62,7 +62,7 @@
     <div>
       <span class="tag">Smart Recipe & Ingredient Search</span>
       <h2>Find exactly what you need in seconds.</h2>
-      <p class="lead">Search by name, ingredient, or label and let AI surface the perfect match from your collection. Keep your recipe library structured your way with custom tags like "Weeknight Dinners," "Vegan," or "5 Ingredients", and filter them instantly.</p>
+      <p class="lead">Search by name, ingredient, or label to quickly find the perfect match from your collection. Keep your recipe library structured your way with custom tags like "Weeknight Dinners," "Vegan," or "5 Ingredients", and filter them instantly.</p>
     </div>
     <div class="card-media">
       <img class="img-mock" src="https://images.unsplash.com/photo-1490818387583-1baba5e638af?q=80&w=1600" alt="Search">
@@ -159,11 +159,11 @@
       <div class="plan" data-plan="free">
         <div class="plan-indicator"></div>
         <span class="tag tag-full">Free</span>
-        <div class="price">€0</div>
+        <div class="price">$0</div>
         <p class="muted">Get started with core features.</p>
         <div class="plan-features">
           <div class="feature">Import from social & web (monthly limit)</div>
-          <div class="feature">Basic OCR</div>
+
           <div class="feature">Smart Recipe & Ingredient Search</div>
           <div class="feature">Collections & label</div>
           <div class="feature">Meal planner & Grocery list (basic)</div>
@@ -175,14 +175,14 @@
       <div class="plan selected" data-plan="pro">
         <div class="plan-indicator"></div>
         <span class="tag tag-full">Pro</span>
-        <div class="price">€2.99<span style="font-size:1rem;font-weight:600"> /mo</span></div>
+        <div class="price">$2.99<span style="font-size:1rem;font-weight:600"> /mo</span></div>
         <p class="muted">Everything in Free, plus power tools.</p>
         <div class="plan-features">
           <div class="feature"><b>Ad-free experience</b></div>
           <div class="feature"><b>Unlimited imports</b></div>
           <div class="feature"><b>Household collaboration</b></div>
           <div class="feature"><b>Advanced Cook Mode</b></div>
-          <div class="feature"><b>Advanced OCR + editing</b></div>
+
           <div class="feature"><b>Planner & groceries (advanced)</b></div>
           <div class="feature"><b>Priority sync & support</b></div>
         </div>
@@ -388,9 +388,9 @@
       const period = btn.dataset.period;
       const proPrice = document.querySelector('.plan[data-plan="pro"] .price');
       if (period === 'annually') {
-        proPrice.innerHTML = '€29.99<span style="font-size:1rem;font-weight:600"> /year</span><div class="save-badge">Save 17%</div>';
+        proPrice.innerHTML = '$29.99<span style="font-size:1rem;font-weight:600"> /year</span><div class="save-badge">Save 17%</div>';
       } else {
-        proPrice.innerHTML = '€2.99<span style="font-size:1rem;font-weight:600"> /mo</span>';
+        proPrice.innerHTML = '$2.99<span style="font-size:1rem;font-weight:600"> /mo</span>';
       }
     });
   });
