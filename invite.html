@@ -88,7 +88,15 @@
             const path = window.location.pathname;
             const inviteId = path.split('/').pop();
             
-            if (!inviteId || inviteId === 'invite.html') return;
+            // If no invite ID, just go to store
+            if (!inviteId || inviteId === 'invite.html') {
+                if (isIOS()) {
+                    window.location.href = APP_STORE_URL;
+                } else if (isAndroid()) {
+                    window.location.href = PLAY_STORE_URL;
+                }
+                return;
+            }
             
             const deepLink = 'mealmingle://invite/' + inviteId;
             const startTime = Date.now();
