@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join Household - Meal Mingle</title>
+    <title>Join Cookbook - Meal Mingle</title>
     
     <!-- Open Graph -->
-    <meta property="og:title" content="Join my Meal Mingle household!">
-    <meta property="og:description" content="Share recipes, meal plans, and grocery lists with your family">
-    <meta property="og:image" content="https://meal-mingle.app/images/household-invite.jpg">
+    <meta property="og:title" content="Join my Meal Mingle cookbook!">
+    <meta property="og:description" content="Discover and share amazing recipes together">
+    <meta property="og:image" content="https://meal-mingle.app/images/cookbook-invite.jpg">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     
@@ -29,9 +29,9 @@
 
     <main class="container section">
         <div style="text-align: center; max-width: 600px; margin: 0 auto;">
-            <span class="tag primary">🏠 Household Invitation</span>
-            <h1>You're Invited!</h1>
-            <p class="lead">You've been invited to join a household on Meal Mingle. Share recipes, meal plans, and grocery lists with your family!</p>
+            <span class="tag primary">📚 Cookbook Invitation</span>
+            <h1>Join my cookbook!</h1>
+            <p class="lead">You've been invited to join a cookbook on Meal Mingle. Discover and share amazing recipes together!</p>
             
             <div style="margin-top: 32px;">
                 <a href="#" onclick="openApp(); return false;" class="btn btn-full">
@@ -53,15 +53,15 @@
     <script>
         function openApp() {
             const path = window.location.pathname;
-            const inviteId = path.split('/').pop();
-            if (inviteId && inviteId !== 'invite.html') {
-                window.location.href = `mealmingle://invite/${inviteId}`;
+            const cookbookId = path.split('/').pop();
+            if (cookbookId && cookbookId !== 'cookbook-invite.html') {
+                window.location.href = `mealmingle://cookbook/${cookbookId}`;
             }
         }
         
         if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-            const inviteId = window.location.pathname.split('/').pop();
-            if (inviteId && inviteId !== 'invite.html') {
+            const cookbookId = window.location.pathname.split('/').pop();
+            if (cookbookId && cookbookId !== 'cookbook-invite.html') {
                 setTimeout(() => openApp(), 1000);
             }
         }

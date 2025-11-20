@@ -1,0 +1,19 @@
+RewriteEngine On
+
+# Recipe sharing with dynamic previews
+RewriteRule ^recipe/([a-zA-Z0-9_-]+)/?$ recipe.php?id=$1 [L,QSA]
+
+# Household invitations
+RewriteRule ^invite/([a-zA-Z0-9_-]+)/?$ invite.html [L,QSA]
+
+# Cookbook invitations  
+RewriteRule ^cookbook/([a-zA-Z0-9_-]+)/?$ cookbook-invite.html [L,QSA]
+
+# Force HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Set correct content type for AASA file
+<Files "apple-app-site-association">
+    Header set Content-Type "application/json"
+</Files>

@@ -1,0 +1,21 @@
+{
+  "functions": {
+    "recipe.php": {
+      "runtime": "vercel-php@0.6.0"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/recipe/([^/]+)",
+      "destination": "/recipe.php?id=$1"
+    },
+    {
+      "source": "/invite/([^/]+)",
+      "destination": "/invite.html"
+    },
+    {
+      "source": "/cookbook/([^/]+)",
+      "destination": "/cookbook-invite.html"
+    }
+  ]
+}
