@@ -4,11 +4,7 @@
     "details": [
       {
         "appID": "A885JFKV9F.com.meal-mingle.app",
-        "paths": [
-          "/invite/*",
-          "/recipe/*",
-          "/cookbook/*"
-        ]
+        "paths": ["/cookbook/*", "/recipe/*", "/invite/*"]
       }
     ]
   }
