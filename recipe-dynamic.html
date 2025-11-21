@@ -53,41 +53,11 @@
     <script>
         const recipeId = window.location.pathname.split('/').pop();
         
-        async function loadRecipe() {
-            if (!recipeId || recipeId === 'recipe-dynamic.html') return;
-            
-            try {
-                const response = await fetch(`https://recip-c4b96-default-rtdb.firebaseio.com/recipes/${recipeId}.json`);
-                const recipe = await response.json();
-                
-                if (recipe) {
-                    // Update page content
-                    document.getElementById('recipe-title').textContent = recipe.title || 'Delicious Recipe';
-                    document.getElementById('recipe-desc').textContent = recipe.instructions ? 
-                        recipe.instructions.substring(0, 150) + '...' : 'Discover amazing recipes on Meal Mingle';
-                    
-                    // Update meta tags
-                    document.getElementById('og-title').setAttribute('content', recipe.title || 'Delicious Recipe');
-                    document.getElementById('og-desc').setAttribute('content', recipe.instructions ? 
-                        recipe.instructions.substring(0, 150) + '...' : 'Discover amazing recipes on Meal Mingle');
-                    if (recipe.imageUrl) {
-                        document.getElementById('og-image').setAttribute('content', recipe.imageUrl);
-                    }
-                    
-                    // Add recipe image
-                    if (recipe.imageUrl) {
-                        const img = document.createElement('img');
-                        img.src = recipe.imageUrl;
-                        img.alt = recipe.title;
-                        img.style.cssText = 'width: 100%; max-width: 400px; border-radius: 16px; margin-bottom: 24px;';
-                        document.getElementById('content').insertBefore(img, document.getElementById('recipe-title'));
-                    }
-                } else {
-                    document.getElementById('recipe-title').textContent = 'Recipe Not Found';
-                    document.getElementById('recipe-desc').textContent = 'This recipe might have been removed or the link is incorrect.';
-                }
-            } catch (error) {
-                console.error('Failed to load recipe:', error);
+        function loadRecipe() {
+            // For now, just show the recipe ID
+            if (recipeId && recipeId !== 'recipe-dynamic.html') {
+                document.getElementById('recipe-title').textContent = `Recipe ${recipeId}`;
+                document.getElementById('recipe-desc').textContent = 'This is a shared recipe from Meal Mingle!';
             }
         }
         
