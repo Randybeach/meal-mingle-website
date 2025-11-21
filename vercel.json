@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/recipe/([^/]+)",
-      "destination": "/recipe.html"
+      "destination": "/recipe-dynamic.html"
     },
     {
       "source": "/invite/([^/]+)",
