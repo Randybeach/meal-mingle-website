@@ -1,15 +1,15 @@
 {
   "rewrites": [
     {
-      "source": "/recipe/([^/]+)",
+      "source": "/recipe/(.*)",
       "destination": "/recipe-dynamic.html"
     },
     {
-      "source": "/invite/([^/]+)",
+      "source": "/invite/(.*)",
       "destination": "/invite.html"
     },
     {
-      "source": "/cookbook/([^/]+)",
+      "source": "/cookbook/(.*)",
       "destination": "/cookbook-invite.html"
     }
   ]
