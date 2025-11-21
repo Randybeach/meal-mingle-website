@@ -1,0 +1,17 @@
+[build]
+  publish = "."
+
+[[redirects]]
+  from = "/recipe/*"
+  to = "/recipe-dynamic.html"
+  status = 200
+
+[[redirects]]
+  from = "/invite/*"
+  to = "/invite.html"
+  status = 200
+
+[[redirects]]
+  from = "/cookbook/*"
+  to = "/cookbook-invite.html"
+  status = 200
