@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/test-recipe",
+      "destination": "/recipe-dynamic.html"
+    },
+    {
       "source": "/recipe/(.*)",
       "destination": "/recipe-dynamic.html"
     },
