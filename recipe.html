@@ -1,70 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recipe - Meal Mingle</title>
-    
-    <!-- Open Graph -->
-    <meta property="og:title" content="Check out this recipe on Meal Mingle!">
-    <meta property="og:description" content="Delicious recipe shared with love">
-    <meta property="og:image" content="https://meal-mingle.app/images/recipe-preview.png">
-    <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary_large_image">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=GFS+Didot&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/styles.css">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Recipe - Meal Mingle — Save recipes from anywhere</title>
+
+<!-- Open Graph -->
+<meta property="og:title" content="Check out this recipe on Meal Mingle!">
+<meta property="og:description" content="Delicious recipe shared with love">
+<meta property="og:image" content="https://meal-mingle.app/images/recipe-preview.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=GFS+Didot&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <nav class="container">
-            <a href="/" class="logo"><span class="dot"></span> Meal Mingle</a>
-            <div class="nav">
-                <a href="https://apps.apple.com/app/meal-mingle" class="btn outline">Download App</a>
-            </div>
-        </nav>
-    </header>
 
-    <main class="container section">
-        <div style="text-align: center; max-width: 600px; margin: 0 auto;">
-            <span class="tag primary">🍳 Recipe Share</span>
-            <h1>Check out this recipe!</h1>
-            <p class="lead">Someone shared a delicious recipe with you on Meal Mingle. Open the app to see the full recipe with ingredients and instructions.</p>
-            
-            <div style="margin-top: 32px;">
-                <a href="#" onclick="openApp(); return false;" class="btn btn-full">
-                    Open in Meal Mingle
-                </a>
-            </div>
-            
-            <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--ring);">
-                <p style="color: var(--muted); font-size: 14px; margin-bottom: 16px;">Don't have the app yet?</p>
-                <div class="store-row" style="justify-content: center;">
-                    <a href="https://apps.apple.com/app/meal-mingle" class="store-badge">
-                        <img src="/assets/images/apple-store.svg" alt="Download on App Store" class="store-img">
-                    </a>
-                </div>
-            </div>
+<header>
+  <nav class="container">
+    <div class="logo" style="width:50%"><span class="dot"></span> Meal Mingle</div>
+    <div class="nav">
+      <a href="/#features">Features</a>
+      <a href="/#pricing">Pricing</a>
+      <a href="/#faq">FAQ</a>
+      <a class="btn outline" href="#download">Get App</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <span class="tag primary">🍳 Recipe Share</span>
+      <h1>Check out this recipe <br/>on Meal Mingle!</h1>
+      <p class="lead">Someone shared a delicious recipe with you. Open the app to see the full recipe with ingredients, instructions, and start cooking together.</p>
+      <div class="store-row" id="download">
+        <a href="#" onclick="openApp(); return false;" class="btn btn-full" style="margin-bottom: 16px;">
+          Open in Meal Mingle
+        </a>
+        <div class="store-badge"><img src="assets/images/apple-store.svg" alt="Download on App Store" class="store-img"></div>
+      </div>
+    </div>
+
+    <div class="hero-phones">
+      <div class="phone"><img src="assets/images/IMG_9871D0E722D5-1.jpeg" alt="app screen 1"></div>
+      <div class="phone"><img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?q=80&w=1000" alt="app screen 2"></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <!-- Brand / Tagline / Social -->
+      <div class="footer-brand">
+        <div class="logo"><span class="dot"></span> Meal Mingle</div>
+        <p class="footer-tagline">Save recipes from anywhere. Plan meals. Shop smarter.</p>
+        <div class="footer-badge-row">
+          <a class="store-badge" href="#" aria-label="Download on the App Store">
+            <img src="assets/images/apple-store.svg" alt="Download on the App Store">
+          </a>
         </div>
-    </main>
+      </div>
 
-    <script>
-        function openApp() {
-            const path = window.location.pathname;
-            const recipeId = path.split('/').pop();
-            if (recipeId && recipeId !== 'recipe.html') {
-                window.location.href = `mealmingle://recipe/${recipeId}`;
-            }
-        }
-        
-        if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-            const recipeId = window.location.pathname.split('/').pop();
-            if (recipeId && recipeId !== 'recipe.html') {
-                setTimeout(() => openApp(), 1000);
-            }
-        }
-    </script>
+      <!-- Links -->
+      <div>
+        <span class="foot-head">Links</span>
+        <div class="footer-links">
+          <a href="/#features">Features</a>
+          <a href="/#pricing">Pricing</a>
+          <a href="/#faq">FAQ</a>
+        </div>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <span class="foot-head">Contact Us</span>
+        <div class="footer-contact footer-links">
+          <a class="footer-links"href="mailto:support@meal-mingle.com">support@meal-mingle.com</a>
+        </div>
+      </div>
+
+      <!-- Legal -->
+      <div>
+        <span class="foot-head">Legal</span>
+        <div class="footer-links">
+          <a href="terms.html">Terms of use</a>
+          <a href="privacy.html">Privacy policy</a>
+          <a href="cookies.html">Cookie policy</a>
+        </div>
+      </div>
+    </div>
+    <p class="footer-copyright">© 2025 Meal Mingle</p>
+  </div>
+</footer>
+
+<script>
+  function openApp() {
+    const path = window.location.pathname;
+    const recipeId = path.split('/').pop();
+    if (recipeId && recipeId !== 'recipe.html') {
+      window.location.href = `mealmingle://recipe/${recipeId}`;
+    }
+  }
+  
+  if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+    const recipeId = window.location.pathname.split('/').pop();
+    if (recipeId && recipeId !== 'recipe.html') {
+      setTimeout(() => openApp(), 1000);
+    }
+  }
+</script>
+
 </body>
 </html>
