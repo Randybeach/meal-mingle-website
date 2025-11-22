@@ -1,8 +1,13 @@
 {
+  "functions": {
+    "api/*.php": {
+      "runtime": "vercel-php@1.0.0"
+    }
+  },
   "rewrites": [
     {
       "source": "/recipe/([^/]+)",
-      "destination": "/recipe.html"
+      "destination": "/api/recipe.php?id=$1"
     },
     {
       "source": "/invite/([^/]+)",
