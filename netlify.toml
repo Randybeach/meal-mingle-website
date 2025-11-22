@@ -1,0 +1,17 @@
+[build]
+  publish = "."
+
+[[redirects]]
+  from = "/recipe/:id"
+  to = "/.netlify/functions/recipe?id=:id"
+  status = 200
+
+[[redirects]]
+  from = "/invite/:id"
+  to = "/invite.html"
+  status = 200
+
+[[redirects]]
+  from = "/cookbook/:id"
+  to = "/cookbook-invite.html"
+  status = 200
