@@ -4,67 +4,145 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join Household - Meal Mingle</title>
-    
-    <!-- Open Graph -->
-    <meta property="og:title" content="Join my Meal Mingle household!">
-    <meta property="og:description" content="Share recipes, meal plans, and grocery lists with your family">
-    <meta property="og:image" content="https://meal-mingle.app/images/household-invite.jpg">
-    <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary_large_image">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=GFS+Didot&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/styles.css">
-</head>
-<body>
-    <header>
-        <nav class="container">
-            <a href="/" class="logo"><span class="dot"></span> Meal Mingle</a>
-            <div class="nav">
-                <a href="https://apps.apple.com/app/meal-mingle" class="btn outline">Download App</a>
-            </div>
-        </nav>
-    </header>
-
-    <main class="container section">
-        <div style="text-align: center; max-width: 600px; margin: 0 auto;">
-            <span class="tag primary">🏠 Household Invitation</span>
-            <h1>You're Invited!</h1>
-            <p class="lead">You've been invited to join a household on Meal Mingle. Share recipes, meal plans, and grocery lists with your family!</p>
-            
-            <div style="margin-top: 32px;">
-                <a href="#" onclick="openApp(); return false;" class="btn btn-full">
-                    Open in Meal Mingle
-                </a>
-            </div>
-            
-            <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--ring);">
-                <p style="color: var(--muted); font-size: 14px; margin-bottom: 16px;">Don't have the app yet?</p>
-                <div class="store-row" style="justify-content: center;">
-                    <a href="https://apps.apple.com/app/meal-mingle" class="store-badge">
-                        <img src="/assets/images/apple-store.svg" alt="Download on App Store" class="store-img">
-                    </a>
-                </div>
-            </div>
-        </div>
-    </main>
-
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        .logo {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: #2c3e50;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #7f8c8d;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        .btn {
+            background: #e74c3c;
+            color: white;
+            padding: 16px 32px;
+            text-decoration: none;
+            border-radius: 10px;
+            display: inline-block;
+            font-weight: 600;
+            font-size: 18px;
+            transition: transform 0.2s;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+        .app-store-links {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid #ecf0f1;
+        }
+        .app-store-links p {
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        .stores {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .store-badge {
+            height: 40px;
+        }
+    </style>
     <script>
+        const APP_STORE_URL = 'https://apps.apple.com/app/meal-mingle';
+        const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.example.recip';
+        
+        function isIOS() {
+            return /iPad|iPhone|iPod/.test(navigator.userAgent);
+        }
+        
+        function isAndroid() {
+            return /Android/.test(navigator.userAgent);
+        }
+        
         function openApp() {
             const path = window.location.pathname;
             const inviteId = path.split('/').pop();
-            if (inviteId && inviteId !== 'invite.html') {
-                window.location.href = `mealmingle://invite/${inviteId}`;
-            }
+            
+            if (!inviteId || inviteId === 'invite.html') return;
+            
+            const deepLink = 'mealmingle://invite/' + inviteId;
+            const startTime = Date.now();
+            
+            // Try to open the app
+            window.location.href = deepLink;
+            
+            // If app doesn't open within 2.5 seconds, redirect to store
+            setTimeout(function() {
+                const elapsed = Date.now() - startTime;
+                // If page is still visible after 2.5s, app didn't open
+                if (elapsed >= 2400) {
+                    if (isIOS()) {
+                        window.location.href = APP_STORE_URL;
+                    } else if (isAndroid()) {
+                        window.location.href = PLAY_STORE_URL;
+                    }
+                }
+            }, 2500);
         }
         
-        if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-            const inviteId = window.location.pathname.split('/').pop();
+        window.onload = function() {
+            const path = window.location.pathname;
+            const inviteId = path.split('/').pop();
+            
             if (inviteId && inviteId !== 'invite.html') {
-                setTimeout(() => openApp(), 1000);
+                openApp();
+                setTimeout(function() {
+                    document.body.style.display = 'flex';
+                }, 2000);
+            } else {
+                document.body.style.display = 'flex';
             }
-        }
+        };
     </script>
+</head>
+<body style="display: none;">
+    <div class="card">
+        <div class="logo">🏠</div>
+        <h1>You're Invited!</h1>
+        <p>You've been invited to join a household on Meal Mingle. Share recipes, meal plans, and grocery lists with your family!</p>
+        
+        <a href="#" onclick="openApp(); return false;" class="btn">
+            Open in Meal Mingle
+        </a>
+        
+        <div class="app-store-links">
+            <p>Don't have the app yet?</p>
+            <div class="stores">
+                <a href="https://apps.apple.com/app/meal-mingle" target="_blank">
+                    <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83" alt="Download on App Store" class="store-badge">
+                </a>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
