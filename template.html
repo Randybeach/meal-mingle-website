@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{pageTitle}}</title>
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="{{ogTitle}}">
+    <meta property="og:description" content="{{ogDescription}}">
+    <meta property="og:image" content="{{ogImageUrl}}">
+    <meta property="og:url" content="{{canonicalUrl}}">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Meal Mingle">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ogTitle}}">
+    <meta name="twitter:description" content="{{ogDescription}}">
+    <meta name="twitter:image" content="{{ogImageUrl}}">
+    
+    <!-- Apple Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Meal Mingle">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        .hero-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 16px;
+            object-fit: cover;
+            margin: 0 auto 24px;
+            display: block;
+        }
+        .emoji { font-size: 60px; margin-bottom: 20px; }
+        h1 { color: #2c3e50; font-size: 28px; margin-bottom: 12px; line-height: 1.3; }
+        .description { color: #7f8c8d; font-size: 16px; line-height: 1.5; margin-bottom: 32px; }
+        .btn-primary {
+            background: #667eea;
+            color: white;
+            padding: 16px 32px;
+            text-decoration: none;
+            border-radius: 12px;
+            display: inline-block;
+            font-weight: 600;
+            font-size: 18px;
+            margin-bottom: 16px;
+            transition: all 0.2s;
+            width: 100%;
+            max-width: 280px;
+        }
+        .btn-primary:hover { background: #5a6fd8; transform: translateY(-1px); }
+        .btn-secondary {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            display: inline-block;
+            margin-top: 8px;
+        }
+        .btn-secondary:hover { text-decoration: underline; }
+        .app-info {
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid #ecf0f1;
+        }
+        .store-badge { height: 44px; margin-top: 12px; }
+        @media (max-width: 480px) {
+            .card { padding: 32px 24px; }
+            h1 { font-size: 24px; }
+            .hero-image { width: 100px; height: 100px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        {{#hasImage}}
+        <img src="{{ogImageUrl}}" alt="{{contentTitle}}" class="hero-image">
+        {{/hasImage}}
+        {{^hasImage}}
+        <div class="emoji">{{contentEmoji}}</div>
+        {{/hasImage}}
+        
+        <h1>{{contentTitle}}</h1>
+        <p class="description">{{contentDescription}}</p>
+        
+        <a href="#" onclick="openApp()" class="btn-primary">
+            Open in Meal Mingle
+        </a>
+        
+        <div class="app-info">
+            <p style="color: #95a5a6; font-size: 14px; margin-bottom: 12px;">Don't have the app yet?</p>
+            <a href="https://apps.apple.com/app/meal-mingle" target="_blank" class="btn-secondary">
+                Download Meal Mingle
+            </a>
+            <br>
+            <a href="https://apps.apple.com/app/meal-mingle" target="_blank">
+                <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83" alt="Download on App Store" class="store-badge">
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function openApp() {
+            const deepLink = '{{deepLinkUrl}}';
+            window.location.href = deepLink;
+            
+            setTimeout(() => {
+                if (document.hasFocus()) {
+                    window.location.href = 'https://apps.apple.com/app/meal-mingle';
+                }
+            }, 2500);
+        }
+    </script>
+</body>
+</html>

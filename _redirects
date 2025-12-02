@@ -1,1 +1,8 @@
 /invite/*  /invite.html  200
+# Netlify redirects for Universal Links
+/invite/:id  /invite/?id=:id  200
+/recipe/:id  /recipe/?id=:id  200
+/cookbook/:id  /cookbook/?id=:id  200
+
+# Fallback for old invite.html
+/invite.html  /invite/  301
