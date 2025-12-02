@@ -89,6 +89,11 @@ app.get('/recipe/:id', (req, res) => {
     res.send(html);
 });
 
+// Home route
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
+
 // Serve static files
 app.use(express.static('.'));
 
