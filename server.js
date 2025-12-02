@@ -6,7 +6,7 @@ const app = express();
 const PORT = 3000;
 
 // Load HTML template
-const template = fs.readFileSync(path.join(__dirname, 'template.html'), 'utf8');
+const template = fs.readFileSync(path.join(__dirname, 'template-simple.html'), 'utf8');
 
 // Mock database
 const invites = {
@@ -58,8 +58,7 @@ app.get('/invite/:id', (req, res) => {
         .replace('{{contentTitle}}', `Join ${invite.householdName}`)
         .replace('{{contentDescription}}', `${invite.inviterName} invited you to share recipes, meal plans, and grocery lists with ${invite.memberCount} family members.`)
         .replace('{{contentEmoji}}', '🏠')
-        .replace(/{{#hasImage}}[\s\S]*?{{/hasImage}}/g, invite.imageUrl ? '$&' : '')
-        .replace(/{{\^hasImage}}[\s\S]*?{{/hasImage}}/g, !invite.imageUrl ? '$&' : '');
+
     
     res.setHeader('Content-Type', 'text/html');
     res.send(html);
@@ -84,8 +83,7 @@ app.get('/recipe/:id', (req, res) => {
         .replace('{{contentTitle}}', recipe.name)
         .replace('{{contentDescription}}', `Ready in ${recipe.cookTime} • ${recipe.difficulty} difficulty • Open in Meal Mingle to save this recipe to your collection and start cooking!`)
         .replace('{{contentEmoji}}', '👨‍🍳')
-        .replace(/{{#hasImage}}[\s\S]*?{{/hasImage}}/g, recipe.imageUrl ? '$&' : '')
-        .replace(/{{\^hasImage}}[\s\S]*?{{/hasImage}}/g, !recipe.imageUrl ? '$&' : '');
+
     
     res.setHeader('Content-Type', 'text/html');
     res.send(html);
