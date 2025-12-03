@@ -12,6 +12,21 @@ const template = fs.readFileSync(path.join(__dirname, 'template-simple.html'), '
 const DOMAIN = 'https://meal-mingle.app';
 const APP_SCHEME = 'mealmingle'; // Your actual app scheme
 
+// Serve static files with proper MIME types
+app.use(express.static('.', {
+    setHeaders: (res, path) => {
+        if (path.endsWith('.css')) {
+            res.setHeader('Content-Type', 'text/css');
+        }
+    }
+}));
+
+// Specific route for CSS files
+app.get('*.css', (req, res) => {
+    res.setHeader('Content-Type', 'text/css');
+    res.sendFile(path.join(__dirname, req.path));
+});
+
 // Mock database
 const invites = {
     'abc123': {
@@ -135,9 +150,6 @@ app.get('*', (req, res) => {
     // Otherwise serve index.html
     res.sendFile(path.join(__dirname, 'index.html'));
 });
-
-// Serve static files
-app.use(express.static('.'));
 
 app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);
