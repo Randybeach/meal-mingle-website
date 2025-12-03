@@ -4,6 +4,10 @@
     {
       "src": "server.js",
       "use": "@vercel/node"
+    },
+    {
+      "src": "**",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
@@ -17,10 +21,6 @@
     },
     {
       "src": "/cookbook/(.*)",
-      "dest": "/server.js"
-    },
-    {
-      "src": "/(.*)",
       "dest": "/server.js"
     }
   ]
