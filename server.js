@@ -33,13 +33,13 @@ const invites = {
         inviterName: 'Sarah Johnson',
         householdName: "Sarah's Kitchen",
         memberCount: 4,
-        imageUrl: 'https://meal-mingle.app/api/invite-image/abc123'
+        imageUrl: `${DOMAIN}/assets/images/invite-preview.svg?v=5`
     },
     'xyz789': {
         inviterName: 'Mike Chen',
         householdName: "The Chen Family",
         memberCount: 6,
-        imageUrl: 'https://meal-mingle.app/api/invite-image/xyz789'
+        imageUrl: `${DOMAIN}/assets/images/invite-preview.svg?v=5`
     }
 };
 
@@ -48,13 +48,13 @@ const recipes = {
         name: 'Chicken Tikka Masala',
         cookTime: '45 min',
         difficulty: 'Medium',
-        imageUrl: 'https://meal-mingle.app/api/recipe-image/recipe123'
+        imageUrl: `${DOMAIN}/assets/images/recipe-preview.svg?v=5`
     },
     'recipe456': {
         name: 'Quick Pasta Carbonara',
         cookTime: '20 min',
         difficulty: 'Easy',
-        imageUrl: 'https://meal-mingle.app/api/recipe-image/recipe456'
+        imageUrl: `${DOMAIN}/assets/images/recipe-preview.svg?v=5`
     }
 };
 
@@ -122,7 +122,7 @@ app.get('/cookbook/:id', (req, res) => {
         .replace('{{pageTitle}}', `${cookbook.name} - Meal Mingle`)
         .replace(/{{ogTitle}}/g, `${cookbook.name} 📚`)
         .replace(/{{ogDescription}}/g, `${cookbook.recipeCount} delicious recipes • Shared on Meal Mingle`)
-        .replace(/{{ogImageUrl}}/g, `${DOMAIN}/assets/images/cookbook-preview.jpg`)
+        .replace(/{{ogImageUrl}}/g, `${DOMAIN}/assets/images/cookbook-preview.svg?v=5`)
         .replace(/{{canonicalUrl}}/g, `${DOMAIN}/cookbook/${cookbookId}`)
         .replace('{{deepLinkUrl}}', `${APP_SCHEME}://cookbook/${cookbookId}`)
         .replace('{{contentTitle}}', cookbook.name)

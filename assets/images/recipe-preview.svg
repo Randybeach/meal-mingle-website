@@ -1,0 +1,27 @@
+<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+  <!-- Card Background -->
+  <rect width="1200" height="630" fill="#224541" rx="16"/>
+  
+  <!-- Company Header -->
+  <image x="524" y="126" width="48" height="48" href="https://meal-mingle.app/assets/images/logo.png" style="border-radius: 50%;"/>
+  <text x="600" y="158" fill="#F5F5F7" font-family="GFS Didot, serif" font-size="36" font-weight="500" letter-spacing="1px">Meal Mingle</text>
+  
+  <!-- Divider -->
+  <line x1="60" y1="190" x2="1140" y2="190" stroke="#E5E5EA" stroke-width="1"/>
+  
+  <!-- Tag -->
+  <rect x="550" y="210" width="100" height="24" fill="rgba(255, 255, 255, 0.1)" stroke="rgba(255, 255, 255, 0.1)" stroke-width="0.5" rx="20"/>
+  <text x="600" y="226" text-anchor="middle" fill="#E5E5EA" font-family="Inter, sans-serif" font-size="10" font-weight="600" letter-spacing="1.5px">RECIPE SHARE</text>
+  
+  <!-- Recipe Image -->
+  <image x="400" y="250" width="400" height="120" href="https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?w=400&h=120&fit=crop&crop=center" rx="8"/>
+  
+  <!-- Title -->
+  <text x="600" y="420" text-anchor="middle" fill="#FFFFFF" font-family="GFS Didot, serif" font-size="48" font-weight="500">Creamy Garlic Pasta</text>
+  
+  <!-- Description -->
+  <text x="600" y="470" text-anchor="middle" fill="rgba(255, 255, 255, 0.7)" font-family="Inter, sans-serif" font-size="24" font-weight="200">A delicious 20-minute pasta recipe perfect for weeknight dinners</text>
+  
+  <!-- Domain -->
+  <text x="600" y="510" text-anchor="middle" fill="rgba(255, 255, 255, 0.7)" font-family="Inter, sans-serif" font-size="18" font-weight="400">meal-mingle.app</text>
+</svg>
