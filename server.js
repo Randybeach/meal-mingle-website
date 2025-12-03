@@ -126,6 +126,16 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+// Catch all other routes and serve index.html
+app.get('*', (req, res) => {
+    // If it's a static file request, let it pass through
+    if (req.path.match(/\.(css|js|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot)$/)) {
+        return res.status(404).send('File not found');
+    }
+    // Otherwise serve index.html
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
+
 // Serve static files
 app.use(express.static('.'));
 
