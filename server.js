@@ -8,6 +8,10 @@ const PORT = 3000;
 // Load HTML template
 const template = fs.readFileSync(path.join(__dirname, 'template-simple.html'), 'utf8');
 
+// Configuration
+const DOMAIN = 'https://meal-mingle.app';
+const APP_SCHEME = 'mealmingle'; // Your actual app scheme
+
 // Mock database
 const invites = {
     'abc123': {
@@ -53,11 +57,14 @@ app.get('/invite/:id', (req, res) => {
         .replace(/{{ogTitle}}/g, `${invite.inviterName} invited you to join ${invite.householdName}! 🏠`)
         .replace(/{{ogDescription}}/g, `Join ${invite.memberCount} family members sharing recipes, meal plans, and grocery lists on Meal Mingle.`)
         .replace(/{{ogImageUrl}}/g, invite.imageUrl)
-        .replace(/{{canonicalUrl}}/g, `https://meal-mingle.app/invite/${inviteId}`)
-        .replace('{{deepLinkUrl}}', `mealmingle://invite/${inviteId}`)
+        .replace(/{{canonicalUrl}}/g, `${DOMAIN}/invite/${inviteId}`)
+        .replace('{{deepLinkUrl}}', `${APP_SCHEME}://invite/${inviteId}`)
         .replace('{{contentTitle}}', `Join ${invite.householdName}`)
         .replace('{{contentDescription}}', `${invite.inviterName} invited you to share recipes, meal plans, and grocery lists with ${invite.memberCount} family members.`)
         .replace('{{contentEmoji}}', '🏠')
+        .replace('{{actionTag}}', 'Household Invite')
+        .replace('{{buttonText}}', 'Join Household')
+        .replace('{{contentMedia}}', '<div class="recipe-emoji">🏠</div>')
 
     
     res.setHeader('Content-Type', 'text/html');
@@ -78,12 +85,37 @@ app.get('/recipe/:id', (req, res) => {
         .replace(/{{ogTitle}}/g, `${recipe.name} 👨‍🍳`)
         .replace(/{{ogDescription}}/g, `Ready in ${recipe.cookTime} • ${recipe.difficulty} • Shared on Meal Mingle`)
         .replace(/{{ogImageUrl}}/g, recipe.imageUrl)
-        .replace(/{{canonicalUrl}}/g, `https://meal-mingle.app/recipe/${recipeId}`)
-        .replace('{{deepLinkUrl}}', `mealmingle://recipe/${recipeId}`)
+        .replace(/{{canonicalUrl}}/g, `${DOMAIN}/recipe/${recipeId}`)
+        .replace('{{deepLinkUrl}}', `${APP_SCHEME}://recipe/${recipeId}`)
         .replace('{{contentTitle}}', recipe.name)
         .replace('{{contentDescription}}', `Ready in ${recipe.cookTime} • ${recipe.difficulty} difficulty • Open in Meal Mingle to save this recipe to your collection and start cooking!`)
         .replace('{{contentEmoji}}', '👨‍🍳')
 
+    
+    
+    res.setHeader('Content-Type', 'text/html');
+    res.send(html.replace('{{actionTag}}', 'Recipe Shared').replace('{{buttonText}}', 'Open Recipe').replace('{{contentMedia}}', recipe.imageUrl ? `<img src="${recipe.imageUrl}" alt="${recipe.name}" class="content-image">` : '<div class="recipe-emoji">👨🍳</div>'));
+});
+
+// Cookbook endpoint
+app.get('/cookbook/:id', (req, res) => {
+    const cookbookId = req.params.id;
+    // Add cookbook data here
+    const cookbook = { name: 'Family Recipes', recipeCount: 25 };
+    
+    const html = template
+        .replace('{{pageTitle}}', `${cookbook.name} - Meal Mingle`)
+        .replace(/{{ogTitle}}/g, `${cookbook.name} 📚`)
+        .replace(/{{ogDescription}}/g, `${cookbook.recipeCount} delicious recipes • Shared on Meal Mingle`)
+        .replace(/{{ogImageUrl}}/g, `${DOMAIN}/assets/images/cookbook-preview.jpg`)
+        .replace(/{{canonicalUrl}}/g, `${DOMAIN}/cookbook/${cookbookId}`)
+        .replace('{{deepLinkUrl}}', `${APP_SCHEME}://cookbook/${cookbookId}`)
+        .replace('{{contentTitle}}', cookbook.name)
+        .replace('{{contentDescription}}', `Explore ${cookbook.recipeCount} amazing recipes in this collection!`)
+        .replace('{{contentEmoji}}', '📚')
+        .replace('{{actionTag}}', 'Cookbook Shared')
+        .replace('{{buttonText}}', 'Open Cookbook')
+        .replace('{{contentMedia}}', '<div class="recipe-emoji">📚</div>');
     
     res.setHeader('Content-Type', 'text/html');
     res.send(html);
