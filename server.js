@@ -35,7 +35,8 @@ async function fetchRecipeById(recipeId) {
     // Mock data for now - replace this entire function
     const mockRecipes = {
         'recipe123': { name: 'Chicken Tikka Masala', cookTime: '45 min', difficulty: 'Medium', imageUrl: `${DOMAIN}/assets/images/recipe-preview.svg?v=6` },
-        'test123': { name: 'Creamy Garlic Pasta', cookTime: '20 min', difficulty: 'Easy', imageUrl: `${DOMAIN}/assets/images/recipe-preview.svg?v=7` }
+        'test123': { name: 'Creamy Garlic Pasta', cookTime: '20 min', difficulty: 'Easy', imageUrl: `${DOMAIN}/assets/images/recipe-preview.svg?v=8` },
+        'fresh999': { name: 'Amazing Pasta Dish', cookTime: '15 min', difficulty: 'Easy', imageUrl: `${DOMAIN}/assets/images/recipe-preview.svg?v=9` }
     };
     return mockRecipes[recipeId] || null;
 }
