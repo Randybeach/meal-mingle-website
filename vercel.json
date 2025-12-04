@@ -1,21 +1,31 @@
 {
-  "functions": {
-    "server.js": {
-      "maxDuration": 10
+  "version": 2,
+  "builds": [
+    {
+      "src": "server.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "**",
+      "use": "@vercel/static"
     }
-  },
-  "rewrites": [
+  ],
+  "routes": [
     {
-      "source": "/recipe/(.*)",
-      "destination": "/server.js"
+      "src": "/recipe/(.*)",
+      "dest": "/server.js"
     },
     {
-      "source": "/invite/(.*)",
-      "destination": "/server.js"
+      "src": "/invite/(.*)",
+      "dest": "/server.js"
     },
     {
-      "source": "/cookbook/(.*)",
-      "destination": "/server.js"
+      "src": "/cookbook/(.*)",
+      "dest": "/server.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
     }
   ]
 }
