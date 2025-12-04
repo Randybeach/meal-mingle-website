@@ -1,6 +1,12 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
+const admin = require('firebase-admin');
+
+if (!admin.apps.length) {
+    admin.initializeApp();
+}
+const db = admin.firestore();
 
 const app = express();
 
@@ -35,36 +41,22 @@ app.get('*.css', (req, res) => {
 // "Database" functions — replace with real DB calls later
 //
 async function fetchRecipeById(recipeId) {
-  // Mock data for now - replace with real DB
-  const mockRecipes = {
-    recipe123: {
-      name: 'Chicken Tikka Masala',
-      cookTime: '45 min',
-      difficulty: 'Medium',
-      imageUrl: `${DOMAIN}/assets/images/recipe-preview.svg?v=6`,
-    },
-    test123: {
-      name: 'Creamy Garlic Pasta',
-      cookTime: '20 min',
-      difficulty: 'Easy',
-      imageUrl: `${DOMAIN}/assets/images/recipe-preview.svg?v=8`,
-    },
-    fresh999: {
-      name: 'Amazing Pasta Dish',
-      cookTime: '15 min',
-      difficulty: 'Easy',
-      imageUrl: `${DOMAIN}/assets/images/recipe-preview.svg?v=9`,
-    },
-    // Example real ID you mentioned
-    vzbpRMUtpxFxMVKRWgbf: {
-      name: 'Bourbon Bread Pudding',
-      cookTime: '45 min',
-      difficulty: 'Medium',
-      imageUrl: `${DOMAIN}/assets/images/recipe-preview.svg?v=10`,
-    },
-  };
-
-  return mockRecipes[recipeId] || null;
+  try {
+    const recipeDoc = await db.collection('recipes').doc(recipeId).get();
+    if (!recipeDoc.exists) {
+      return null;
+    }
+    const data = recipeDoc.data();
+    return {
+      name: data.title,
+      imageUrl: data.imageUrl,
+      cookTime: data.cookTime || '',
+      difficulty: data.difficulty || ''
+    };
+  } catch (error) {
+    console.error('Error fetching recipe:', error);
+    return null;
+  }
 }
 
 async function fetchInviteById(inviteId) {
