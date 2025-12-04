@@ -4,10 +4,18 @@ const path = require('path');
 const admin = require('firebase-admin');
 
 if (!admin.apps.length) {
-    admin.initializeApp();
+    const credentials = process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON 
+        ? JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON)
+        : undefined;
+    
+    admin.initializeApp({
+        credential: credentials ? admin.credential.cert(credentials) : admin.credential.applicationDefault()
+    });
 }
-const db = admin.firestore();
 
+// Explicitly set project for Firestore
+const db = admin.firestore();
+db.settings({ projectId: 'recip-c4b96' });
 const app = express();
 
 // Load HTML template
@@ -41,12 +49,16 @@ app.get('*.css', (req, res) => {
 // "Database" functions — replace with real DB calls later
 //
 async function fetchRecipeById(recipeId) {
+  console.log('Fetching recipe:', recipeId);
   try {
     const recipeDoc = await db.collection('recipes').doc(recipeId).get();
+    console.log('Recipe exists:', recipeDoc.exists);
     if (!recipeDoc.exists) {
+      console.log('Recipe not found in Firestore');
       return null;
     }
     const data = recipeDoc.data();
+    console.log('Recipe data:', JSON.stringify(data, null, 2));
     return {
       name: data.title,
       imageUrl: data.imageUrl,
@@ -54,7 +66,7 @@ async function fetchRecipeById(recipeId) {
       difficulty: data.difficulty || ''
     };
   } catch (error) {
-    console.error('Error fetching recipe:', error);
+    console.error('Firebase error:', error.message);
     return null;
   }
 }
