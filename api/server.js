@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 const app = express();
-const PORT = 8000;
+const PORT = 3000;
 
 // Load HTML template
 const template = fs.readFileSync(path.join(__dirname, 'template-simple.html'), 'utf8');
@@ -35,7 +35,7 @@ async function fetchRecipeById(recipeId) {
     // Mock data for now - replace this entire function
     const mockRecipes = {
         'recipe123': { name: 'Chicken Tikka Masala', cookTime: '45 min', difficulty: 'Medium', imageUrl: `${DOMAIN}/assets/images/recipe-preview.svg?v=6` },
-        'test123': { name: 'Creamy Garlic Pasta', cookTime: '20 min', difficulty: 'Easy', imageUrl: 'https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?w=1200&h=630&fit=crop' }
+        'test123': { name: 'Creamy Garlic Pasta', cookTime: '20 min', difficulty: 'Easy', imageUrl: `${DOMAIN}/assets/images/recipe-preview.svg?v=6` }
     };
     return mockRecipes[recipeId] || null;
 }
@@ -174,10 +174,10 @@ app.get('*', (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);
     console.log('Test URLs:');
-    console.log('- http://localhost:8000/invite/abc123');
-    console.log('- http://localhost:8000/invite/xyz789');
-    console.log('- http://localhost:8000/recipe/recipe123');
-    console.log('- http://localhost:8000/recipe/recipe456');
+    console.log('- http://localhost:3000/invite/abc123');
+    console.log('- http://localhost:3000/invite/xyz789');
+    console.log('- http://localhost:3000/recipe/recipe123');
+    console.log('- http://localhost:3000/recipe/recipe456');
 });
 
 module.exports = app;
