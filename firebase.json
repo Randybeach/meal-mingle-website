@@ -1,0 +1,28 @@
+{
+  "hosting": {
+    "public": ".",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**",
+      "functions/**"
+    ],
+    "rewrites": [
+      {
+        "source": "/recipe/**",
+        "function": "recipe"
+      },
+      {
+        "source": "/cookbook/**", 
+        "function": "cookbook"
+      },
+      {
+        "source": "/invite/**",
+        "destination": "/invite.html"
+      }
+    ]
+  },
+  "functions": {
+    "source": "functions"
+  }
+}

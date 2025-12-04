@@ -1,8 +1,6 @@
-/invite/*  /invite.html  200
-# Netlify redirects for Universal Links
-/invite/:id  /invite/?id=:id  200
-/recipe/:id  /recipe/?id=:id  200
-/cookbook/:id  /cookbook/?id=:id  200
+# Redirect to Firebase Functions for dynamic content
+/recipe/*  https://us-central1-recip-c4b96.cloudfunctions.net/recipe/:splat  301
+/cookbook/*  https://us-central1-recip-c4b96.cloudfunctions.net/cookbook/:splat  301
 
-# Fallback for old invite.html
-/invite.html  /invite/  301
+# Static invite page
+/invite/*  /invite.html  200
