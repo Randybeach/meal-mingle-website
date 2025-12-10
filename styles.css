@@ -241,6 +241,112 @@ nav{display:flex;align-items:center;justify-content:space-between;min-height:64p
     margin-bottom: 1.5rem !important;
   }
   
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .phone {
+    width: min(280px, 70%);
+  }
+  
+  .iphone17-frame {
+    width: 180px;
+    height: 367px;
+    border-radius: 33px;
+    padding: 4px;
+  }
+  
+  .dynamic-island {
+    top: 10px;
+    width: 72px;
+    height: 20px;
+    border-radius: 12px;
+  }
+  
+  .iphone17-screen {
+    border-radius: 29px;
+  }
+  
+  .dual-phones {
+    flex-direction: row;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  
+  .dual-phones .iphone17-frame {
+    width: 140px;
+    height: 285px;
+  }
+  
+  .dual-phones .dynamic-island {
+    width: 56px;
+    height: 16px;
+    top: 8px;
+  }
+  
+  .dual-phones .iphone17-mockup:nth-child(2) {
+    transform: rotate(3deg);
+  }
+  
+  .triple-phones {
+    flex-direction: row;
+    gap: 0.3rem;
+    align-items: center;
+  }
+  
+  .triple-phones .iphone17-frame {
+    width: 120px;
+    height: 245px;
+  }
+  
+  .triple-phones .dynamic-island {
+    width: 48px;
+    height: 15px;
+    top: 7px;
+  }
+  
+  .triple-phones .iphone17-mockup:nth-child(1) {
+    transform: rotate(-2deg);
+  }
+  
+  .triple-phones .iphone17-mockup:nth-child(3) {
+    transform: rotate(2deg);
+  }
+  
+  .split {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .footer-grid {
+    grid-template-columns: 1fr 1fr 1fr !important;
+    gap: 1.5rem !important;
+    font-size: 12px;
+    text-align: center;
+  }
+  
+  .footer-brand {
+    grid-column: 1 / -1 !important;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  
+  .foot-head {
+    font-size: 14px !important;
+    margin-bottom: 0.8rem !important;
+    text-align: center;
+  }
+  
+  .footer-links {
+    align-items: center !important;
+  }
+  
+  .footer-links a {
+    font-size: 13px !important;
+    text-align: center;
+  }
+  
   .desktop-only {
     display: none !important;
   }
@@ -358,7 +464,23 @@ nav{display:flex;align-items:center;justify-content:space-between;min-height:64p
     gap: 1rem;
     margin-top: 2rem;
   }
+  
+  .mini-feats {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
 }
+
+/* Footer */
+footer{background:var(--light-gray);padding:40px 0 20px;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2rem;}
+.footer-brand{}
+.footer-tagline{color:var(--muted);margin:1rem 0;}
+.footer-badge-row{margin-top:1rem;}
+.foot-head{font-weight:600;color:var(--ink);margin-bottom:1rem;display:block;}
+.footer-links{display:flex;flex-direction:column;gap:0.5rem;}
+.footer-links a{color:var(--muted);}
+.footer-copyright{text-align:center;margin-top:2rem;color:var(--muted);font-size:14px;}
 .pricing-toggle-container{
   background:white;
   border:0.5px solid var(--ring);
