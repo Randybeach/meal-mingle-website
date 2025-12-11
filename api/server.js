@@ -50,7 +50,11 @@ async function fetchInviteById(inviteId) {
 
 async function fetchCookbookById(cookbookId) {
     // TODO: Replace with your actual database query
-    return { name: 'Family Recipes', recipeCount: 25, imageUrl: `${DOMAIN}/assets/images/cookbook-preview.svg?v=5` };
+    const mockCookbooks = {
+        'birthday-party': { name: "Birthday's Party", recipeCount: 3, imageUrl: `${DOMAIN}/assets/images/cookbook-preview.svg?v=5` },
+        'family-recipes': { name: 'Family Recipes', recipeCount: 25, imageUrl: `${DOMAIN}/assets/images/cookbook-preview.svg?v=5` }
+    };
+    return mockCookbooks[cookbookId] || null;
 }
 
 // Invite endpoint
@@ -133,10 +137,15 @@ app.get('/recipe/:id', async (req, res) => {
 });
 
 // Cookbook endpoint
-app.get('/cookbook/:id', (req, res) => {
+app.get('/cookbook/:id', async (req, res) => {
     const cookbookId = req.params.id;
-    // Add cookbook data here
-    const cookbook = { name: 'Family Recipes', recipeCount: 25 };
+    
+    try {
+        const cookbook = await fetchCookbookById(cookbookId);
+        
+        if (!cookbook) {
+            return res.status(404).send('Cookbook not found');
+        }
     
     const html = template
         .replace('{{pageTitle}}', `${cookbook.name} - Meal Mingle`)
@@ -154,6 +163,10 @@ app.get('/cookbook/:id', (req, res) => {
     
     res.setHeader('Content-Type', 'text/html');
     res.send(html);
+    } catch (error) {
+        console.error('Error fetching cookbook:', error);
+        res.status(500).send('Server error');
+    }
 });
 
 // Home route
