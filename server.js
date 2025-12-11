@@ -163,7 +163,7 @@ app.get('/invite/:id', async (req, res) => {
       .replace('{{contentEmoji}}', '🏠') // not used in template but harmless
       .replace('{{actionTag}}', 'Household Invite')
       .replace('{{buttonText}}', 'Join Household')
-      .replace('{{contentMedia}}', '<div class="recipe-emoji">🏠</div>');
+      .replace('{{contentMedia}}', '<div class="recipe-emoji"><span class="material-symbols-outlined" style="font-size: 120px; color: rgba(34, 69, 65, 0.05);">family_home</span></div>');
 
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
     res.setHeader('Cache-Control', 'public, max-age=300');
@@ -286,9 +286,7 @@ app.get('/cookbook/:id', async (req, res) => {
       .replace('{{buttonText}}', 'Open Cookbook')
       .replace(
         '{{contentMedia}}',
-        cookbook.imageUrl
-          ? `<img src="${cookbook.imageUrl}" alt="${cookbook.name}" class="content-image">`
-          : '<div class="recipe-emoji">📙</div>'
+        '<div class="recipe-emoji"><span class="material-symbols-outlined" style="font-size: 150px; color: rgba(34, 69, 65, 0.1);">menu_book</span></div>'
       );
 
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
