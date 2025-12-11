@@ -59,11 +59,26 @@ async function fetchRecipeById(recipeId) {
     }
     const data = recipeDoc.data();
     console.log('Recipe data:', JSON.stringify(data, null, 2));
+    
+    // Fetch cookbook name if recipe has cookbookId
+    let cookbookName = null;
+    if (data.cookbookId) {
+      try {
+        const cookbookDoc = await db.collection('cookbooks').doc(data.cookbookId).get();
+        if (cookbookDoc.exists) {
+          cookbookName = cookbookDoc.data().name;
+        }
+      } catch (error) {
+        console.log('Could not fetch cookbook name:', error.message);
+      }
+    }
+    
     return {
       name: data.title,
       imageUrl: data.imageUrl,
       cookTime: data.cookTime || '',
-      difficulty: data.difficulty || ''
+      difficulty: data.difficulty || '',
+      cookbookName: cookbookName
     };
   } catch (error) {
     console.error('Firebase error:', error.message);
@@ -85,23 +100,23 @@ async function fetchInviteById(inviteId) {
 }
 
 async function fetchCookbookById(cookbookId) {
-  // TODO: Replace with your actual database query
-  const mockCookbooks = {
-    // Example from your share message
-    ZJtEKEe9uM61pDzDcw4m: {
-      name: 'Drinks',
-      recipeCount: 2,
-      imageUrl: `${DOMAIN}/assets/images/cookbook-preview.svg?v=6`,
-    },
-    // Default example fallback cookbook
-    default: {
-      name: 'Family Recipes',
-      recipeCount: 25,
-      imageUrl: `${DOMAIN}/assets/images/cookbook-preview.svg?v=5`,
-    },
-  };
-
-  return mockCookbooks[cookbookId] || mockCookbooks.default || null;
+  console.log('Fetching cookbook:', cookbookId);
+  try {
+    const cookbookDoc = await db.collection('cookbooks').doc(cookbookId).get();
+    if (!cookbookDoc.exists) {
+      console.log('Cookbook not found in Firestore');
+      return null;
+    }
+    const data = cookbookDoc.data();
+    return {
+      name: data.name || data.title,
+      recipeCount: data.recipeCount || data.recipes?.length || 0,
+      imageUrl: data.imageUrl || `${DOMAIN}/assets/images/cookbook-preview.png?v=6`
+    };
+  } catch (error) {
+    console.error('Firebase cookbook error:', error.message);
+    return null;
+  }
 }
 
 //
@@ -187,8 +202,9 @@ app.get('/recipe/:id', async (req, res) => {
 
     console.log('Serving recipe:', recipe.name);
 
-    const ogDescription =
-      recipe.cookTime && recipe.difficulty
+    const ogDescription = recipe.cookbookName
+      ? `From ${recipe.cookbookName} cookbook • Shared on Meal Mingle`
+      : recipe.cookTime && recipe.difficulty
         ? `Ready in ${recipe.cookTime} • ${recipe.difficulty} • Shared on Meal Mingle`
         : 'View this recipe on Meal Mingle';
 
@@ -253,8 +269,8 @@ app.get('/cookbook/:id', async (req, res) => {
       : 'Discover this cookbook on Meal Mingle';
 
     const contentDescription = cookbook.recipeCount
-      ? `Explore ${cookbook.recipeCount} amazing recipes in this collection!`
-      : 'Explore this collection of recipes on Meal Mingle!';
+      ? `Explore ${cookbook.recipeCount} amazing recipes in this collection! Open in Meal Mingle to save these recipes to your collection and start cooking!`
+      : 'Explore this collection of recipes on Meal Mingle! Open in Meal Mingle to save these recipes to your collection and start cooking!';
 
     const html = template
       .replace('{{pageTitle}}', `${cookbook.name} - Meal Mingle`)
@@ -268,7 +284,12 @@ app.get('/cookbook/:id', async (req, res) => {
       .replace('{{contentEmoji}}', '📚')
       .replace('{{actionTag}}', 'Cookbook Shared')
       .replace('{{buttonText}}', 'Open Cookbook')
-      .replace('{{contentMedia}}', '<div class="recipe-emoji">📚</div>');
+      .replace(
+        '{{contentMedia}}',
+        cookbook.imageUrl
+          ? `<img src="${cookbook.imageUrl}" alt="${cookbook.name}" class="content-image">`
+          : '<div class="recipe-emoji">📙</div>'
+      );
 
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
     res.setHeader('Cache-Control', 'public, max-age=300');
