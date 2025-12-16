@@ -260,7 +260,7 @@ app.get('/cookbook/:id', async (req, res) => {
       cookbook = {
         name: 'Cookbook on Meal Mingle',
         recipeCount: null,
-        imageUrl: `${DOMAIN}/assets/images/cookbook-preview.svg?v=fallback`,
+        imageUrl: `${DOMAIN}/assets/images/cookbook-preview.png?v=fallback`,
       };
     }
 
