@@ -229,7 +229,7 @@ app.get('/recipe/:id', async (req, res) => {
         '{{contentMedia}}',
         recipe.imageUrl
           ? `<img src="${recipe.imageUrl}" alt="${recipe.name}" class="content-image">`
-          : '<div class="recipe-emoji">👨‍🍳</div>'
+          : '<div class="recipe-emoji" style="margin-bottom: 20px;">👨‍🍳</div>'
       );
 
     // Headers for social media crawlers
