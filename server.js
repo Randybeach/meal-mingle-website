@@ -93,7 +93,7 @@ async function fetchInviteById(inviteId) {
       inviterName: 'Sarah Johnson',
       householdName: "Sarah's Kitchen",
       memberCount: 4,
-      imageUrl: `${DOMAIN}/assets/images/invite-preview.svg?v=5`,
+      imageUrl: `${DOMAIN}/assets/images/household-preview.png?v=6`,
     },
   };
   return mockInvites[inviteId] || null;
@@ -138,7 +138,7 @@ app.get('/invite/:id', async (req, res) => {
         inviterName: 'Someone',
         householdName: 'Meal Mingle Household',
         memberCount: 1,
-        imageUrl: `${DOMAIN}/assets/images/invite-preview.svg?v=fallback`,
+        imageUrl: `${DOMAIN}/assets/images/household-preview.png?v=fallback`,
       };
     }
 
