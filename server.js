@@ -101,7 +101,7 @@ async function fetchInviteById(inviteId) {
       inviterName: data.inviterName || 'Someone',
       householdName: data.householdName || 'Meal Mingle Household',
       memberCount: data.memberCount || 1,
-      imageUrl: `${DOMAIN}/assets/images/household-preview.png?v=6`,
+      imageUrl: `${DOMAIN}/assets/images/household-preview.jpg`,
     };
   } catch (error) {
     console.error('Firebase invitation error:', error.message);
@@ -148,7 +148,7 @@ app.get('/invite/:id', async (req, res) => {
         inviterName: 'Someone',
         householdName: 'Meal Mingle Household',
         memberCount: 1,
-        imageUrl: `${DOMAIN}/assets/images/household-preview.png?v=fallback`,
+        imageUrl: `${DOMAIN}/assets/images/household-preview.png?v=${Date.now()}`,
       };
     }
 
