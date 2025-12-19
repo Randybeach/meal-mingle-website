@@ -87,16 +87,26 @@ async function fetchRecipeById(recipeId) {
 }
 
 async function fetchInviteById(inviteId) {
-  // TODO: Replace with your actual database query
-  const mockInvites = {
-    abc123: {
-      inviterName: 'Sarah Johnson',
-      householdName: "Sarah's Kitchen",
-      memberCount: 4,
+  console.log('Fetching invitation:', inviteId);
+  try {
+    const invitationDoc = await db.collection('invitations').doc(inviteId).get();
+    if (!invitationDoc.exists) {
+      console.log('Invitation not found in Firestore');
+      return null;
+    }
+    const data = invitationDoc.data();
+    console.log('Invitation data:', JSON.stringify(data, null, 2));
+    
+    return {
+      inviterName: data.inviterName || 'Someone',
+      householdName: data.householdName || 'Meal Mingle Household',
+      memberCount: data.memberCount || 1,
       imageUrl: `${DOMAIN}/assets/images/household-preview.png?v=6`,
-    },
-  };
-  return mockInvites[inviteId] || null;
+    };
+  } catch (error) {
+    console.error('Firebase invitation error:', error.message);
+    return null;
+  }
 }
 
 async function fetchCookbookById(cookbookId) {
