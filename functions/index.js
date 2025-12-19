@@ -112,3 +112,58 @@ exports.cookbook = functions.https.onRequest(async (req, res) => {
     res.status(500).send('Server error');
   }
 });
+
+// Server-side rendering for household invitation pages
+exports.invite = functions.https.onRequest(async (req, res) => {
+  const invitationId = req.path.split('/')[1];
+  
+  try {
+    const invitationDoc = await db.collection('invitations').doc(invitationId).get();
+    
+    if (!invitationDoc.exists) {
+      return res.status(404).send('Invitation not found');
+    }
+    
+    const invitation = invitationDoc.data();
+    
+    const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Join ${invitation.householdName} - Meal Mingle</title>
+  
+  <meta property="og:title" content="You're invited to join ${invitation.householdName} on Meal Mingle! 🏠">
+  <meta property="og:description" content="Share recipes, meal plans, and grocery lists with your family. Tap to join!">
+  <meta property="og:image" content="https://meal-mingle.app/assets/images/household-preview.png">
+  <meta property="og:url" content="https://meal-mingle.app/invite/${invitationId}">
+  <meta property="og:type" content="article">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="You're invited to join ${invitation.householdName} on Meal Mingle! 🏠">
+  <meta name="twitter:description" content="Share recipes, meal plans, and grocery lists with your family. Tap to join!">
+  <meta name="twitter:image" content="https://meal-mingle.app/assets/images/household-preview.png">
+  
+  <script>
+    setTimeout(() => {
+      window.location.href = 'mealmingle://invite/${invitationId}';
+    }, 100);
+    
+    setTimeout(() => {
+      window.location.href = 'https://apps.apple.com/app/meal-mingle';
+    }, 2000);
+  </script>
+</head>
+<body>
+  <h1>Join ${invitation.householdName}</h1>
+  <p>Opening in Meal Mingle...</p>
+</body>
+</html>`;
+    
+    res.set('Cache-Control', 'public, max-age=300');
+    res.send(html);
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).send('Server error');
+  }
+});
