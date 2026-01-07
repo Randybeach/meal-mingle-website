@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{pageTitle}}</title>
-    
+
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="{{ogTitle}}">
     <meta property="og:description" content="{{ogDescription}}">
@@ -12,20 +12,20 @@
     <meta property="og:url" content="{{canonicalUrl}}">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Meal Mingle">
-    
+
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{ogTitle}}">
     <meta name="twitter:description" content="{{ogDescription}}">
     <meta name="twitter:image" content="{{ogImageUrl}}">
-    
+
     <!-- Apple Meta Tags -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Meal Mingle">
-    
+
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
+        body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
@@ -99,21 +99,21 @@
         {{^hasImage}}
         <div class="emoji">{{contentEmoji}}</div>
         {{/hasImage}}
-        
+
         <h1>{{contentTitle}}</h1>
         <p class="description">{{contentDescription}}</p>
-        
+
         <a href="#" onclick="openApp()" class="btn-primary">
             Open in Meal Mingle
         </a>
-        
+
         <div class="app-info">
             <p style="color: #95a5a6; font-size: 14px; margin-bottom: 12px;">Don't have the app yet?</p>
-            <a href="https://apps.apple.com/app/meal-mingle" target="_blank" class="btn-secondary">
+            <a href="https://apps.apple.com/us/app/meal-mingle/id6754255710" target="_blank" class="btn-secondary">
                 Download Meal Mingle
             </a>
             <br>
-            <a href="https://apps.apple.com/app/meal-mingle" target="_blank">
+            <a href="https://apps.apple.com/us/app/meal-mingle/id6754255710" target="_blank">
                 <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83" alt="Download on App Store" class="store-badge">
             </a>
         </div>
@@ -123,10 +123,10 @@
         function openApp() {
             const deepLink = '{{deepLinkUrl}}';
             window.location.href = deepLink;
-            
+
             setTimeout(() => {
                 if (document.hasFocus()) {
-                    window.location.href = 'https://apps.apple.com/app/meal-mingle';
+                    window.location.href = 'https://apps.apple.com/us/app/meal-mingle/id6754255710';
                 }
             }, 2500);
         }

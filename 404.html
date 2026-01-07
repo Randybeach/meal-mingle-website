@@ -6,7 +6,7 @@
     <title>Meal Mingle</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
+        body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
@@ -79,16 +79,16 @@
         <div class="logo" id="emoji">🏠</div>
         <h1 id="title">You're Invited!</h1>
         <p id="message">You've been invited to join a household on Meal Mingle. Share recipes, meal plans, and grocery lists with your family!</p>
-        
+
         <button onclick="openApp()" class="btn" id="openBtn">
             Open in Meal Mingle
         </button>
-        
+
         <div id="loading" style="display: none;">Opening app...</div>
-        
+
         <div class="app-store-links">
             <p>Don't have the app yet?</p>
-            <a href="https://apps.apple.com/app/meal-mingle" target="_blank">
+            <a href="https://apps.apple.com/us/app/meal-mingle/id6754255710" target="_blank">
                 <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83" alt="Download on App Store" class="store-badge">
             </a>
         </div>
@@ -97,18 +97,18 @@
     <script>
         const path = window.location.pathname;
         const segments = path.split('/').filter(s => s);
-        
+
         // Check if this is an invite link
         if (segments[0] === 'invite' && segments[1]) {
             const inviteId = segments[1];
             const deepLink = 'mealmingle://invite/' + inviteId;
-            
+
             // Auto-attempt to open app
             setTimeout(function() {
                 window.location.href = deepLink;
                 document.getElementById('loading').style.display = 'block';
             }, 500);
-            
+
             // Function to manually open app
             window.openApp = function() {
                 window.location.href = deepLink;
@@ -118,16 +118,16 @@
             // Recipe link
             const recipeId = segments[1];
             const deepLink = 'mealmingle://recipe/' + recipeId;
-            
+
             document.getElementById('emoji').textContent = '🍳';
             document.getElementById('title').textContent = 'Check out this recipe!';
             document.getElementById('message').textContent = 'Someone shared a recipe with you on Meal Mingle.';
-            
+
             setTimeout(function() {
                 window.location.href = deepLink;
                 document.getElementById('loading').style.display = 'block';
             }, 500);
-            
+
             window.openApp = function() {
                 window.location.href = deepLink;
                 document.getElementById('loading').style.display = 'block';
@@ -139,7 +139,7 @@
             document.getElementById('message').textContent = 'Smart recipe management with social features and intelligent recipe importing.';
             document.getElementById('openBtn').textContent = 'Download App';
             document.getElementById('openBtn').onclick = function() {
-                window.location.href = 'https://apps.apple.com/app/meal-mingle';
+                window.location.href = 'https://apps.apple.com/us/app/meal-mingle/id6754255710';
             };
         }
     </script>
