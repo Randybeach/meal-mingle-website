@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://meal-mingle.app/sitemap.xml
+
+# Block crawling of admin/private areas (if any exist in future)
+Disallow: /admin/
+Disallow: /.well-known/
+
+# Allow all comparison pages for SEO
+Allow: /recime-compare.html
+Allow: /deglaze-compare.html
+Allow: /flavorish-compare.html
