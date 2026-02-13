@@ -1,3 +1,6 @@
+# Redirect www to non-www
+https://www.meal-mingle.app/*  https://meal-mingle.app/:splat  301!
+
 # Redirect to Firebase Functions for dynamic content
 /recipe/*  https://us-central1-recip-c4b96.cloudfunctions.net/recipe/:splat  301
 /cookbook/*  https://us-central1-recip-c4b96.cloudfunctions.net/cookbook/:splat  301
