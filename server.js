@@ -26,7 +26,7 @@ const template = fs.readFileSync(
 
 // Configuration
 const DOMAIN = 'https://meal-mingle.app';
-const APP_SCHEME = 'meal-mingle'; // Your actual app scheme
+const APP_SCHEME = 'mealmingle'; // Must match iOS CFBundleURLSchemes
 
 // Serve static files with proper MIME types (mainly for local dev)
 app.use(
