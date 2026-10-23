@@ -129,15 +129,11 @@
         window.onload = function() {
             const path = window.location.pathname;
             const inviteId = path.split('/').pop();
-
-            if (inviteId && inviteId !== 'invite.html') {
-                openApp();
-                setTimeout(function() {
-                    document.body.style.display = 'flex';
-                }, 2000);
-            } else {
-                document.body.style.display = 'flex';
+            const btn = document.getElementById('open-app-btn');
+            if (btn && inviteId && inviteId !== 'invite.html') {
+                btn.href = 'mealmingle://invite/' + inviteId;
             }
+            document.body.style.display = 'flex';
         };
     </script>
 </head>
@@ -147,7 +143,7 @@
         <h1>You're Invited!</h1>
         <p>You've been invited to join a household on Meal Mingle. Share recipes, meal plans, and grocery lists with your family!</p>
 
-        <a href="#" onclick="openApp(); return false;" class="btn">
+        <a id="open-app-btn" href="mealmingle://invite/" class="btn">
             Open in Meal Mingle
         </a>
 
