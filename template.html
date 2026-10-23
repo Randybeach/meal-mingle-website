@@ -103,7 +103,7 @@
         <h1>{{contentTitle}}</h1>
         <p class="description">{{contentDescription}}</p>
 
-        <a href="#" onclick="openApp()" class="btn-primary">
+        <a href="{{deepLinkUrl}}" class="btn-primary">
             Open in Meal Mingle
         </a>
 
@@ -118,18 +118,5 @@
             </a>
         </div>
     </div>
-
-    <script>
-        function openApp() {
-            const deepLink = '{{deepLinkUrl}}';
-            window.location.href = deepLink;
-
-            setTimeout(() => {
-                if (document.hasFocus()) {
-                    window.location.href = 'https://apps.apple.com/us/app/meal-mingle/id6754255710';
-                }
-            }, 2500);
-        }
-    </script>
 </body>
 </html>
